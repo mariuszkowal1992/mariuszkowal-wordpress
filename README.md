@@ -1,2 +1,89 @@
-# mariuszkowal-wordpress
-EN: WordPress theme for my portfolio website. PL: Motyw WordPress dla strony internetowej mojego portfolio.
+# EN:
+
+# MARIUSZKOWAL - WordPress
+
+## Author
+
+Mariusz Kowal
+
+## Purpose
+
+A custom WordPress theme created for my personal portfolio and blog website.
+
+This theme is not intended for public download, installation, or further distribution. The repository serves exclusively for code presentation purposes.
+
+## Features
+
+- Home page with editable ACF Pro sections.
+- Sections: Home, About Me, Services, Portfolio, Blog, Contact.
+- Default page template.
+- Portfolio page template.
+- Blog page template.
+- Single project template.
+- Single blog post template.
+- Search results, category, and tag templates.
+- Custom post type "Project" powered by a dedicated plugin.
+- Support for project category taxonomy.
+- Two separate headers: one for the home page and one for other pages.
+- Two WordPress menu locations.
+- Blog sidebar with search bar, categories, tags, and ads.
+- Portfolio sidebar with filtering and ads.
+- Contact Form 7 integration.
+- Editable cookie notice via ACF Pro.
+- Required plugins management via TGMPA.
+- Gutenberg editor disabled.
+
+## Required Plugins
+
+- Advanced Custom Fields Pro
+- Contact Form 7
+- MARIUSZKOWAL Portfolio Plugin
+
+## Information
+
+This repository is for presentation purposes only. Some features require private or paid plugins that may not be included in the repository.
+
+# PL:
+
+# MARIUSZKOWAL - WordPress
+
+## Autor
+
+Mariusz Kowal
+
+## Przeznaczenie
+
+Autorski motyw WordPress przygotowany dla mojej prywatnej strony portfolio i bloga.
+
+Motyw nie jest przeznaczony do publicznego pobierania, instalowania ani dalszej dystrybucji. Repozytorium służy wyłącznie do prezentacji kodu.
+
+## Funkcjonalności
+
+- Strona główna z edytowalnymi sekcjami ACF Pro.
+- Sekcje: Start, O Mnie, Usługi, Portfolio, Blog, Kontakt.
+- Domyślny szablon zwykłej strony.
+- Szablon strony Portfolio.
+- Szablon strony Blog.
+- Szablon pojedynczego projektu.
+- Szablon pojedynczego wpisu blogowego.
+- Szablony wyników wyszukiwania, kategorii i tagów.
+- Niestandardowy typ wpisu Projekt obsługiwany przez dedykowaną wtyczkę.
+- Obsługa taksonomii kategorii projektów.
+- Dwa osobne nagłówki: dla strony głównej i pozostałych stron.
+- Dwie lokalizacje menu WordPress.
+- Sidebar blogowy z wyszukiwarką, kategoriami, tagami i reklamami.
+- Sidebar portfolio z filtrowaniem oraz reklamami.
+- Integracja z Contact Form 7.
+- Edytowalny komunikat cookies przez ACF Pro.
+- Obsługa wymaganych wtyczek przez TGMPA.
+- Wyłączony edytor Gutenberg.
+
+## Wymagane wtyczki
+
+- Advanced Custom Fields Pro
+- Contact Form 7
+- MARIUSZKOWAL Portfolio Plugin
+
+## Informacja
+
+Repozytorium ma charakter prezentacyjny. Część funkcjonalności wymaga prywatnych lub płatnych wtyczek, które nie muszą być dołączone do repozytorium.
