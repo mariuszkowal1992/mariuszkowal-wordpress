@@ -59,17 +59,20 @@ get_header();
 			}
 
 			$project_gallery_large_url = wp_get_attachment_image_url( $project_gallery_image_id, 'large' );
+			$project_gallery_full_url  = wp_get_attachment_image_url( $project_gallery_image_id, 'full' );
 			$project_gallery_thumb_url = wp_get_attachment_image_url( $project_gallery_image_id, 'medium' );
 
-			if ( ! $project_gallery_large_url || ! $project_gallery_thumb_url ) {
+			if ( ! $project_gallery_large_url || ! $project_gallery_full_url || ! $project_gallery_thumb_url ) {
 				continue;
 			}
 
 			$project_gallery_images[] = array(
 				'id'        => $project_gallery_image_id,
 				'large_url' => $project_gallery_large_url,
+				'full_url'  => $project_gallery_full_url,
 				'thumb_url' => $project_gallery_thumb_url,
 				'alt'       => get_post_meta( $project_gallery_image_id, '_wp_attachment_image_alt', true ),
+				'caption'   => wp_get_attachment_caption( $project_gallery_image_id ),
 			);
 		}
 
@@ -87,14 +90,16 @@ get_header();
 							<div class="project-gallery__stage">
 								<div class="project-gallery__track">
 									<?php foreach ( $project_gallery_images as $project_gallery_image ) : ?>
-										<img src="<?php echo esc_url( $project_gallery_image['large_url'] ); ?>" alt="<?php echo esc_attr( $project_gallery_image['alt'] ); ?>">
+										<a class="project-gallery__slide" href="<?php echo esc_url( $project_gallery_image['full_url'] ); ?>" data-fancybox="project-gallery-<?php the_ID(); ?>" data-caption="<?php echo esc_attr( $project_gallery_image['caption'] ); ?>">
+											<img src="<?php echo esc_url( $project_gallery_image['large_url'] ); ?>" alt="<?php echo esc_attr( $project_gallery_image['alt'] ); ?>">
+										</a>
 									<?php endforeach; ?>
 								</div>
 							</div>
 
 							<div class="project-gallery__thumbs" aria-label="<?php esc_attr_e( 'Miniatury projektu', 'mariuszkowal-wordpress' ); ?>">
 								<?php foreach ( $project_gallery_images as $project_gallery_index => $project_gallery_image ) : ?>
-									<button class="<?php echo 0 === $project_gallery_index ? 'is-active' : ''; ?>" type="button" aria-label="<?php echo esc_attr( sprintf( __( 'Pokaż screen projektu %d', 'mariuszkowal-wordpress' ), $project_gallery_index + 1 ) ); ?>" data-full="<?php echo esc_url( $project_gallery_image['large_url'] ); ?>">
+									<button class="<?php echo 0 === $project_gallery_index ? 'is-active' : ''; ?>" type="button" aria-label="<?php echo esc_attr( sprintf( __( 'Pokaż screen projektu %d', 'mariuszkowal-wordpress' ), $project_gallery_index + 1 ) ); ?>" data-full="<?php echo esc_url( $project_gallery_image['full_url'] ); ?>">
 										<img src="<?php echo esc_url( $project_gallery_image['thumb_url'] ); ?>" alt="<?php echo esc_attr( $project_gallery_image['alt'] ); ?>">
 									</button>
 								<?php endforeach; ?>
