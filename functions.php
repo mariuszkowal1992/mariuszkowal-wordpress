@@ -69,11 +69,12 @@ add_action( 'after_setup_theme', 'mariuszkowal_wordpress_setup' );
 
 /* ŁADOWANIE PLIKÓW CSS I JS MOTYWU */
 function mariuszkowal_wordpress_enqueue_assets() {
-	$theme_version = wp_get_theme()->get( 'Version' );
-	$style_path    = get_stylesheet_directory() . '/style.css';
-	$script_path   = get_theme_file_path( 'assets/js/main.js' );
-	$style_version = file_exists( $style_path ) ? filemtime( $style_path ) : $theme_version;
+	$theme_version  = wp_get_theme()->get( 'Version' );
+	$style_path     = get_stylesheet_directory() . '/style.css';
+	$script_path    = get_theme_file_path( 'assets/js/main.js' );
+	$style_version  = file_exists( $style_path ) ? filemtime( $style_path ) : $theme_version;
 	$script_version = file_exists( $script_path ) ? filemtime( $script_path ) : $theme_version;
+	$script_deps    = array();
 
 	wp_enqueue_style(
 		'mariuszkowal-wordpress-font-awesome',
@@ -81,6 +82,25 @@ function mariuszkowal_wordpress_enqueue_assets() {
 		array(),
 		'7.0.1'
 	);
+
+	if ( is_singular( 'project' ) ) {
+		wp_enqueue_style(
+			'mariuszkowal-wordpress-fancybox',
+			'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css',
+			array(),
+			'5.0.0'
+		);
+
+		wp_enqueue_script(
+			'mariuszkowal-wordpress-fancybox',
+			'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js',
+			array(),
+			'5.0.0',
+			true
+		);
+
+		$script_deps[] = 'mariuszkowal-wordpress-fancybox';
+	}
 
 	wp_enqueue_style(
 		'mariuszkowal-wordpress-style',
@@ -92,7 +112,7 @@ function mariuszkowal_wordpress_enqueue_assets() {
 	wp_enqueue_script(
 		'mariuszkowal-wordpress-main',
 		get_theme_file_uri( 'assets/js/main.js' ),
-		array(),
+		$script_deps,
 		$script_version,
 		true
 	);
