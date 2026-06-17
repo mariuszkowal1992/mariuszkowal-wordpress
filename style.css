@@ -1190,8 +1190,19 @@ main {
     will-change: transform;
 }
 
-.project-gallery__track img {
+.project-gallery__slide {
     flex: 0 0 100%;
+    display: block;
+    color: inherit;
+    cursor: zoom-in;
+}
+
+.project-gallery__slide:focus-visible {
+    outline: 2px solid var(--terminal-strong);
+    outline-offset: -2px;
+}
+
+.project-gallery__slide img {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 2;
