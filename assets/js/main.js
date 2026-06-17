@@ -139,9 +139,13 @@ searchInputs.forEach((searchInput) => {
 });
 
 /* OBSŁUGA GALERII PROJEKTU */
+if (projectGalleries.length && window.Fancybox) {
+    window.Fancybox.bind("[data-fancybox]", {});
+}
+
 projectGalleries.forEach((gallery) => {
     const track = gallery.querySelector(".project-gallery__track");
-    const slides = [...gallery.querySelectorAll(".project-gallery__track img")];
+    const slides = [...gallery.querySelectorAll(".project-gallery__slide")];
     const thumbnailsWrapper = gallery.querySelector(".project-gallery__thumbs");
     const thumbnails = [...gallery.querySelectorAll(".project-gallery__thumbs button")];
     const galleryItemsCount = Math.min(slides.length, thumbnails.length);
