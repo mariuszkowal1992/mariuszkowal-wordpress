@@ -9,6 +9,7 @@ const contactForm = document.querySelector(".contact-form");
 const revealElements = document.querySelectorAll(".reveal-on-scroll");
 const paginatedLists = document.querySelectorAll("[data-pagination]");
 const projectGalleries = document.querySelectorAll("[data-project-gallery]");
+const postContentGalleries = document.querySelectorAll("[data-post-content-gallery]");
 const searchInputs = document.querySelectorAll(".search-form input[name='s']");
 const cookieNotice = document.querySelector("[data-cookie-notice]");
 const cookieNoticeAccept = document.querySelector("[data-cookie-notice-accept]");
@@ -139,12 +140,56 @@ searchInputs.forEach((searchInput) => {
 });
 
 /* OBSŁUGA GALERII PROJEKTU */
-if (projectGalleries.length && window.Fancybox) {
-    window.Fancybox.bind("[data-fancybox]", {
-        Thumbs: {
-            type: "classic"
+const fancyboxOptions = {
+    Thumbs: {
+        type: "classic"
+    }
+};
+
+postContentGalleries.forEach((gallery) => {
+    const galleryName = `post-content-${gallery.dataset.postContentGallery || "images"}`;
+
+    gallery.querySelectorAll("img").forEach((image) => {
+        const imageLink = image.closest("a");
+        const imageUrl = image.currentSrc || image.src;
+        const imageCaption = image.closest("figure")?.querySelector("figcaption")?.textContent.trim() || image.alt || "";
+        const isDirectImageLink = (url) => /\.(?:avif|gif|jpe?g|png|svg|webp)(?:[?#].*)?$/i.test(url);
+
+        if (!imageUrl) {
+            return;
         }
+
+        if (imageLink) {
+            if (!isDirectImageLink(imageLink.href)) {
+                imageLink.href = imageUrl;
+            }
+
+            imageLink.dataset.fancybox = galleryName;
+
+            if (imageCaption) {
+                imageLink.dataset.caption = imageCaption;
+            }
+
+            return;
+        }
+
+        const link = document.createElement("a");
+
+        link.href = imageUrl;
+        link.dataset.fancybox = galleryName;
+        link.className = "single-post-body__image-link";
+
+        if (imageCaption) {
+            link.dataset.caption = imageCaption;
+        }
+
+        image.parentNode.insertBefore(link, image);
+        link.appendChild(image);
     });
+});
+
+if (window.Fancybox && document.querySelector("[data-fancybox]")) {
+    window.Fancybox.bind("[data-fancybox]", fancyboxOptions);
 }
 
 projectGalleries.forEach((gallery) => {
