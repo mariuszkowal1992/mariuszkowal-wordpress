@@ -20,7 +20,7 @@ get_header();
 		$project_date           = function_exists( 'get_field' ) ? get_field( 'project_date' ) : '';
 		$project_client         = function_exists( 'get_field' ) ? get_field( 'project_client' ) : '';
 		$project_github_link    = function_exists( 'get_field' ) ? get_field( 'project_github_link' ) : array();
-		$project_live_link      = function_exists( 'get_field' ) ? get_field( 'project_live_link' ) : array();
+		$project_live_link      = function_exists( 'get_field' ) ? get_field( 'project_link_live' ) : array();
 		$project_technologies   = function_exists( 'get_field' ) ? get_field( 'project_technologies' ) : '';
 		$project_categories     = get_the_terms( get_the_ID(), 'project-category' );
 		$project_category_names = array();
@@ -28,8 +28,33 @@ get_header();
 
 		$project_gallery        = is_array( $project_gallery ) ? $project_gallery : array();
 		$project_gallery_images = array();
-		$project_github_link    = is_array( $project_github_link ) ? $project_github_link : array();
-		$project_live_link      = is_array( $project_live_link ) ? $project_live_link : array();
+		if ( empty( $project_live_link ) && function_exists( 'get_field' ) ) {
+			$project_live_link = get_field( 'project_live_link' );
+		}
+
+		if ( ! is_array( $project_github_link ) ) {
+			$project_github_link = $project_github_link ? array(
+				'url'    => $project_github_link,
+				'title'  => __( 'GitHub', 'mariuszkowal-wordpress' ),
+				'target' => '_blank',
+			) : array();
+		}
+
+		if ( ! is_array( $project_live_link ) ) {
+			$project_live_link = $project_live_link ? array(
+				'url'    => $project_live_link,
+				'title'  => __( 'Zobacz projekt', 'mariuszkowal-wordpress' ),
+				'target' => '_blank',
+			) : array();
+		}
+
+		if ( ! empty( $project_github_link['url'] ) && empty( $project_github_link['title'] ) ) {
+			$project_github_link['title'] = __( 'GitHub', 'mariuszkowal-wordpress' );
+		}
+
+		if ( ! empty( $project_live_link['url'] ) && empty( $project_live_link['title'] ) ) {
+			$project_live_link['title'] = __( 'Zobacz projekt', 'mariuszkowal-wordpress' );
+		}
 
 		if ( $project_categories && ! is_wp_error( $project_categories ) ) {
 			$project_category_names = wp_list_pluck( $project_categories, 'name' );
