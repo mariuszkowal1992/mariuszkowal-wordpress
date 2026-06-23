@@ -83,7 +83,7 @@ function mariuszkowal_wordpress_enqueue_assets() {
 		'7.0.1'
 	);
 
-	if ( is_singular( 'project' ) ) {
+	if ( is_singular( array( 'project', 'post' ) ) ) {
 		wp_enqueue_style(
 			'mariuszkowal-wordpress-fancybox',
 			'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css',
