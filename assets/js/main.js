@@ -140,7 +140,11 @@ searchInputs.forEach((searchInput) => {
 
 /* OBSŁUGA GALERII PROJEKTU */
 if (projectGalleries.length && window.Fancybox) {
-    window.Fancybox.bind("[data-fancybox]", {});
+    window.Fancybox.bind("[data-fancybox]", {
+        Thumbs: {
+            type: "classic"
+        }
+    });
 }
 
 projectGalleries.forEach((gallery) => {
