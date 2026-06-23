@@ -61,6 +61,9 @@ get_header();
 			$project_gallery_large_url = wp_get_attachment_image_url( $project_gallery_image_id, 'large' );
 			$project_gallery_full_url  = wp_get_attachment_image_url( $project_gallery_image_id, 'full' );
 			$project_gallery_thumb_url = wp_get_attachment_image_url( $project_gallery_image_id, 'medium' );
+			$project_gallery_metadata  = wp_get_attachment_metadata( $project_gallery_image_id );
+			$project_gallery_width     = ! empty( $project_gallery_metadata['width'] ) ? (int) $project_gallery_metadata['width'] : 0;
+			$project_gallery_height    = ! empty( $project_gallery_metadata['height'] ) ? (int) $project_gallery_metadata['height'] : 0;
 
 			if ( ! $project_gallery_large_url || ! $project_gallery_full_url || ! $project_gallery_thumb_url ) {
 				continue;
@@ -73,6 +76,7 @@ get_header();
 				'thumb_url' => $project_gallery_thumb_url,
 				'alt'       => get_post_meta( $project_gallery_image_id, '_wp_attachment_image_alt', true ),
 				'caption'   => wp_get_attachment_caption( $project_gallery_image_id ),
+				'is_large'  => $project_gallery_width > 800 || $project_gallery_height > 600,
 			);
 		}
 
@@ -91,7 +95,7 @@ get_header();
 								<div class="project-gallery__track">
 									<?php foreach ( $project_gallery_images as $project_gallery_image ) : ?>
 										<a class="project-gallery__slide" href="<?php echo esc_url( $project_gallery_image['full_url'] ); ?>" data-fancybox="project-gallery-<?php the_ID(); ?>" data-caption="<?php echo esc_attr( $project_gallery_image['caption'] ); ?>">
-											<img src="<?php echo esc_url( $project_gallery_image['large_url'] ); ?>" alt="<?php echo esc_attr( $project_gallery_image['alt'] ); ?>">
+											<img class="<?php echo $project_gallery_image['is_large'] ? 'project-gallery__image--contain' : ''; ?>" src="<?php echo esc_url( $project_gallery_image['large_url'] ); ?>" alt="<?php echo esc_attr( $project_gallery_image['alt'] ); ?>">
 										</a>
 									<?php endforeach; ?>
 								</div>
