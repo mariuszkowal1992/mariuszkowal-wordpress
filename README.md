@@ -1,4 +1,47 @@
-# MARIUSZKOWAL - WordPress
+# EN: MARIUSZKOWAL - WordPress
+
+## Author
+
+Mariusz Kowal
+
+## Purpose
+
+A custom WordPress theme created for my personal website.
+
+The theme is not intended for public download, installation, or redistribution. This repository is used only to present the code.
+
+## Features
+
+- Homepage with editable ACF Pro sections.
+- Sections: Start, About Me, Services, Portfolio, Blog, Contact.
+- Default regular page template.
+- Portfolio page template.
+- Blog page template.
+- Single project template.
+- Single blog post template.
+- Templates for search results, categories, and tags.
+- Custom Project post type handled by a dedicated plugin.
+- Support for project category taxonomy.
+- Two separate headers: one for the homepage and one for the remaining pages.
+- Two WordPress menu locations.
+- Blog sidebar with search, categories, tags, and ads.
+- Portfolio sidebar with filtering and ads.
+- Contact Form 7 integration.
+- Editable cookies message via ACF Pro.
+- Required plugin handling via TGMPA.
+- Gutenberg editor disabled.
+
+## Required Plugins
+
+- Advanced Custom Fields Pro
+- Contact Form 7
+- MARIUSZKOWAL Portfolio Plugin
+
+## Note
+
+This repository is for presentation purposes. Some functionality requires private or paid plugins that may not be included in the repository.
+
+# PL: MARIUSZKOWAL - WordPress
 
 ## Autor
 
@@ -6,7 +49,7 @@ Mariusz Kowal
 
 ## Przeznaczenie
 
-Autorski motyw WordPress przygotowany dla prywatnej strony portfolio oraz bloga Mariusza Kowala.
+Autorski motyw WordPress przygotowany dla mojej prywtanej strony.
 
 Motyw nie jest przeznaczony do publicznego pobierania, instalowania ani dalszej dystrybucji. Repozytorium służy wyłącznie do prezentacji kodu.
 
