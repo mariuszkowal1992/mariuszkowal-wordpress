@@ -29,7 +29,7 @@ get_header();
 						<?php the_post_thumbnail( 'large', array( 'class' => 'single-post-image', 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
 					<?php endif; ?>
 
-					<div class="single-post-body">
+					<div class="single-post-body" data-post-content-gallery="<?php echo esc_attr( get_the_ID() ); ?>">
 						<?php echo wp_kses_post( mariuszkowal_wordpress_clean_code_line_breaks( apply_filters( 'the_content', get_the_content() ) ) ); ?>
 					</div>
 
